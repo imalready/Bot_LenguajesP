@@ -3,6 +3,8 @@ package co.edu.javeriana.bot;
 
 
 import org.jpavlich.bot.*;
+import java.util.Map;
+import java.util.HashMap;
 
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
@@ -13,15 +15,15 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface BotListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link BotParser#program}.
+	 * Enter a parse tree produced by {@link BotParser#function}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgram(BotParser.ProgramContext ctx);
+	void enterFunction(BotParser.FunctionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link BotParser#program}.
+	 * Exit a parse tree produced by {@link BotParser#function}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgram(BotParser.ProgramContext ctx);
+	void exitFunction(BotParser.FunctionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link BotParser#sentence}.
 	 * @param ctx the parse tree
@@ -73,16 +75,6 @@ public interface BotListener extends ParseTreeListener {
 	 */
 	void exitRight(BotParser.RightContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link BotParser#drop}.
-	 * @param ctx the parse tree
-	 */
-	void enterDrop(BotParser.DropContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BotParser#drop}.
-	 * @param ctx the parse tree
-	 */
-	void exitDrop(BotParser.DropContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link BotParser#pick}.
 	 * @param ctx the parse tree
 	 */
@@ -93,6 +85,16 @@ public interface BotListener extends ParseTreeListener {
 	 */
 	void exitPick(BotParser.PickContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link BotParser#drop}.
+	 * @param ctx the parse tree
+	 */
+	void enterDrop(BotParser.DropContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BotParser#drop}.
+	 * @param ctx the parse tree
+	 */
+	void exitDrop(BotParser.DropContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link BotParser#expression}.
 	 * @param ctx the parse tree
 	 */
@@ -102,4 +104,14 @@ public interface BotListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpression(BotParser.ExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link BotParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void enterTerm(BotParser.TermContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BotParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void exitTerm(BotParser.TermContext ctx);
 }

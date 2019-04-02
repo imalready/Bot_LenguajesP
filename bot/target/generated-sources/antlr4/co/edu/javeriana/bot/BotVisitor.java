@@ -3,6 +3,8 @@ package co.edu.javeriana.bot;
 
 
 import org.jpavlich.bot.*;
+import java.util.Map;
+import java.util.HashMap;
 
 
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
@@ -16,11 +18,11 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface BotVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link BotParser#program}.
+	 * Visit a parse tree produced by {@link BotParser#function}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgram(BotParser.ProgramContext ctx);
+	T visitFunction(BotParser.FunctionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BotParser#sentence}.
 	 * @param ctx the parse tree
@@ -52,21 +54,27 @@ public interface BotVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRight(BotParser.RightContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BotParser#drop}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDrop(BotParser.DropContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link BotParser#pick}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitPick(BotParser.PickContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BotParser#drop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDrop(BotParser.DropContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BotParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitExpression(BotParser.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BotParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTerm(BotParser.TermContext ctx);
 }

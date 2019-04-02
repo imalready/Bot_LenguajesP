@@ -27,11 +27,11 @@ public class Main {
 				CommonTokenStream tokens = new CommonTokenStream(lexer);
 				BotParser parser = new BotParser(tokens, bot);
 
-				BotParser.ProgramContext tree = parser.program();
+				BotParser.FunctionContext tree = parser.function();
 
 				BotCustomVisitor visitor = new BotCustomVisitor();
 				visitor.visit(tree);
-
+				
 				System.out.println("Interpretation finished");
 
 			}
