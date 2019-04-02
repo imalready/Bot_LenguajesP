@@ -1,4 +1,4 @@
-// Generated from co/edu/javeriana/bot/Bot.g4 by ANTLR 4.5.1
+// Generated from Bot.g4 by ANTLR 4.4
 package co.edu.javeriana.bot;
 
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class BotParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.5.1", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.4", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -30,6 +30,14 @@ public class BotParser extends Parser {
 		AND=27, OR=28, NOT=29, MAS=30, MENOS=31, MULT=32, DIV=33, ASSIGN=34, READ=35, 
 		WRITELN=36, SEMICOLON=37, PAR_OPEN=38, PAR_CLOSE=39, BRACKET_OPEN=40, 
 		BRACKET_CLOSE=41, WRITE=42, WS=43;
+	public static final String[] tokenNames = {
+		"<INVALID>", "'function'", "'let'", "'println'", "'up'", "'down'", "'right'", 
+		"'left'", "'pick'", "'drop'", "'look'", "NUMERO", "BOOL", "STRING", "ID", 
+		"'begin'", "'end'", "'if'", "'else'", "'while'", "'>'", "'<'", "'<>'", 
+		"'=='", "'>='", "'<='", "'!='", "'and'", "'or'", "'not'", "'+'", "'-'", 
+		"'*'", "'/'", "'='", "'read'", "'writeln'", "';'", "'('", "')'", "'{'", 
+		"'}'", "'write'", "WS"
+	};
 	public static final int
 		RULE_function = 0, RULE_sentence = 1, RULE_up = 2, RULE_down = 3, RULE_left = 4, 
 		RULE_right = 5, RULE_pick = 6, RULE_drop = 7, RULE_expression = 8, RULE_term = 9;
@@ -38,56 +46,11 @@ public class BotParser extends Parser {
 		"expression", "term"
 	};
 
-	private static final String[] _LITERAL_NAMES = {
-		null, "'function'", "'let'", "'println'", "'up'", "'down'", "'right'", 
-		"'left'", "'pick'", "'drop'", "'look'", null, null, null, null, "'begin'", 
-		"'end'", "'if'", "'else'", "'while'", "'>'", "'<'", "'<>'", "'=='", "'>='", 
-		"'<='", "'!='", "'and'", "'or'", "'not'", "'+'", "'-'", "'*'", "'/'", 
-		"'='", "'read'", "'writeln'", "';'", "'('", "')'", "'{'", "'}'", "'write'"
-	};
-	private static final String[] _SYMBOLIC_NAMES = {
-		null, "FUNCTION", "LET", "PRINTLN", "UP", "DOWN", "RIGHT", "LEFT", "PICK", 
-		"DROP", "LOOK", "NUMERO", "BOOL", "STRING", "ID", "BEGIN", "END", "IF", 
-		"ELSE", "WHILE", "GT", "LT", "ENTRE", "EQ", "GEQ", "LEQ", "NEQ", "AND", 
-		"OR", "NOT", "MAS", "MENOS", "MULT", "DIV", "ASSIGN", "READ", "WRITELN", 
-		"SEMICOLON", "PAR_OPEN", "PAR_CLOSE", "BRACKET_OPEN", "BRACKET_CLOSE", 
-		"WRITE", "WS"
-	};
-	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
-
-	/**
-	 * @deprecated Use {@link #VOCABULARY} instead.
-	 */
-	@Deprecated
-	public static final String[] tokenNames;
-	static {
-		tokenNames = new String[_SYMBOLIC_NAMES.length];
-		for (int i = 0; i < tokenNames.length; i++) {
-			tokenNames[i] = VOCABULARY.getLiteralName(i);
-			if (tokenNames[i] == null) {
-				tokenNames[i] = VOCABULARY.getSymbolicName(i);
-			}
-
-			if (tokenNames[i] == null) {
-				tokenNames[i] = "<INVALID>";
-			}
-		}
-	}
-
-	@Override
-	@Deprecated
-	public String[] getTokenNames() {
-		return tokenNames;
-	}
-
-	@Override
-
-	public Vocabulary getVocabulary() {
-		return VOCABULARY;
-	}
-
 	@Override
 	public String getGrammarFileName() { return "Bot.g4"; }
+
+	@Override
+	public String[] getTokenNames() { return tokenNames; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -113,11 +76,11 @@ public class BotParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class FunctionContext extends ParserRuleContext {
-		public List<SentenceContext> sentence() {
-			return getRuleContexts(SentenceContext.class);
-		}
 		public SentenceContext sentence(int i) {
 			return getRuleContext(SentenceContext.class,i);
+		}
+		public List<SentenceContext> sentence() {
+			return getRuleContexts(SentenceContext.class);
 		}
 		public FunctionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -130,11 +93,6 @@ public class BotParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitFunction(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitFunction(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -151,8 +109,7 @@ public class BotParser extends Parser {
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << UP) | (1L << DOWN) | (1L << RIGHT) | (1L << LEFT) | (1L << PICK) | (1L << DROP))) != 0)) {
 				{
 				{
-				setState(20);
-				sentence();
+				setState(20); sentence();
 				}
 				}
 				setState(25);
@@ -173,23 +130,23 @@ public class BotParser extends Parser {
 	}
 
 	public static class SentenceContext extends ParserRuleContext {
+		public RightContext right() {
+			return getRuleContext(RightContext.class,0);
+		}
 		public UpContext up() {
 			return getRuleContext(UpContext.class,0);
 		}
 		public DownContext down() {
 			return getRuleContext(DownContext.class,0);
 		}
+		public PickContext pick() {
+			return getRuleContext(PickContext.class,0);
+		}
 		public LeftContext left() {
 			return getRuleContext(LeftContext.class,0);
 		}
-		public RightContext right() {
-			return getRuleContext(RightContext.class,0);
-		}
 		public DropContext drop() {
 			return getRuleContext(DropContext.class,0);
-		}
-		public PickContext pick() {
-			return getRuleContext(PickContext.class,0);
 		}
 		public SentenceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -203,11 +160,6 @@ public class BotParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitSentence(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitSentence(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final SentenceContext sentence() throws RecognitionException {
@@ -219,43 +171,37 @@ public class BotParser extends Parser {
 			case UP:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(26);
-				up();
+				setState(26); up();
 				}
 				break;
 			case DOWN:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(27);
-				down();
+				setState(27); down();
 				}
 				break;
 			case LEFT:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(28);
-				left();
+				setState(28); left();
 				}
 				break;
 			case RIGHT:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(29);
-				right();
+				setState(29); right();
 				}
 				break;
 			case DROP:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(30);
-				drop();
+				setState(30); drop();
 				}
 				break;
 			case PICK:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(31);
-				pick();
+				setState(31); pick();
 				}
 				break;
 			default:
@@ -275,11 +221,11 @@ public class BotParser extends Parser {
 
 	public static class UpContext extends ParserRuleContext {
 		public ExpressionContext expression;
+		public TerminalNode SEMICOLON() { return getToken(BotParser.SEMICOLON, 0); }
 		public TerminalNode UP() { return getToken(BotParser.UP, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode SEMICOLON() { return getToken(BotParser.SEMICOLON, 0); }
 		public UpContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -292,11 +238,6 @@ public class BotParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitUp(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitUp(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final UpContext up() throws RecognitionException {
@@ -305,12 +246,9 @@ public class BotParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(34);
-			match(UP);
-			setState(35);
-			((UpContext)_localctx).expression = expression();
-			setState(36);
-			match(SEMICOLON);
+			setState(34); match(UP);
+			setState(35); ((UpContext)_localctx).expression = expression();
+			setState(36); match(SEMICOLON);
 
 					//symbolTable.put("up",((UpContext)_localctx).expression.value);
 					bot.up(((UpContext)_localctx).expression.value);
@@ -331,11 +269,11 @@ public class BotParser extends Parser {
 
 	public static class DownContext extends ParserRuleContext {
 		public ExpressionContext expression;
-		public TerminalNode DOWN() { return getToken(BotParser.DOWN, 0); }
+		public TerminalNode SEMICOLON() { return getToken(BotParser.SEMICOLON, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode SEMICOLON() { return getToken(BotParser.SEMICOLON, 0); }
+		public TerminalNode DOWN() { return getToken(BotParser.DOWN, 0); }
 		public DownContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -348,11 +286,6 @@ public class BotParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitDown(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitDown(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final DownContext down() throws RecognitionException {
@@ -361,12 +294,9 @@ public class BotParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
-			match(DOWN);
-			setState(40);
-			((DownContext)_localctx).expression = expression();
-			setState(41);
-			match(SEMICOLON);
+			setState(39); match(DOWN);
+			setState(40); ((DownContext)_localctx).expression = expression();
+			setState(41); match(SEMICOLON);
 
 					//symbolTable.put("down",((DownContext)_localctx).expression.value);
 					bot.down(((DownContext)_localctx).expression.value);
@@ -388,10 +318,10 @@ public class BotParser extends Parser {
 	public static class LeftContext extends ParserRuleContext {
 		public ExpressionContext expression;
 		public TerminalNode LEFT() { return getToken(BotParser.LEFT, 0); }
+		public TerminalNode SEMICOLON() { return getToken(BotParser.SEMICOLON, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode SEMICOLON() { return getToken(BotParser.SEMICOLON, 0); }
 		public LeftContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -404,11 +334,6 @@ public class BotParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitLeft(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitLeft(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final LeftContext left() throws RecognitionException {
@@ -417,12 +342,9 @@ public class BotParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
-			match(LEFT);
-			setState(45);
-			((LeftContext)_localctx).expression = expression();
-			setState(46);
-			match(SEMICOLON);
+			setState(44); match(LEFT);
+			setState(45); ((LeftContext)_localctx).expression = expression();
+			setState(46); match(SEMICOLON);
 
 					//symbolTable.put("left",((LeftContext)_localctx).expression.value);
 					bot.left(((LeftContext)_localctx).expression.value);
@@ -443,11 +365,11 @@ public class BotParser extends Parser {
 
 	public static class RightContext extends ParserRuleContext {
 		public ExpressionContext expression;
+		public TerminalNode SEMICOLON() { return getToken(BotParser.SEMICOLON, 0); }
 		public TerminalNode RIGHT() { return getToken(BotParser.RIGHT, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode SEMICOLON() { return getToken(BotParser.SEMICOLON, 0); }
 		public RightContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -460,11 +382,6 @@ public class BotParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitRight(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitRight(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final RightContext right() throws RecognitionException {
@@ -473,12 +390,9 @@ public class BotParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(49);
-			match(RIGHT);
-			setState(50);
-			((RightContext)_localctx).expression = expression();
-			setState(51);
-			match(SEMICOLON);
+			setState(49); match(RIGHT);
+			setState(50); ((RightContext)_localctx).expression = expression();
+			setState(51); match(SEMICOLON);
 
 					//symbolTable.put("right",((RightContext)_localctx).expression.value);
 					bot.right(((RightContext)_localctx).expression.value);
@@ -512,11 +426,6 @@ public class BotParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitPick(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitPick(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PickContext pick() throws RecognitionException {
@@ -525,10 +434,8 @@ public class BotParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(54);
-			match(PICK);
-			setState(55);
-			match(SEMICOLON);
+			setState(54); match(PICK);
+			setState(55); match(SEMICOLON);
 
 					bot.pick();
 					System.out.println("Tomar");
@@ -547,8 +454,8 @@ public class BotParser extends Parser {
 	}
 
 	public static class DropContext extends ParserRuleContext {
-		public TerminalNode DROP() { return getToken(BotParser.DROP, 0); }
 		public TerminalNode SEMICOLON() { return getToken(BotParser.SEMICOLON, 0); }
+		public TerminalNode DROP() { return getToken(BotParser.DROP, 0); }
 		public DropContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -561,11 +468,6 @@ public class BotParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitDrop(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitDrop(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final DropContext drop() throws RecognitionException {
@@ -574,10 +476,8 @@ public class BotParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(58);
-			match(DROP);
-			setState(59);
-			match(SEMICOLON);
+			setState(58); match(DROP);
+			setState(59); match(SEMICOLON);
 
 					bot.drop();
 					System.out.println("Soltar");
@@ -621,11 +521,6 @@ public class BotParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitExpression(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitExpression(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ExpressionContext expression() throws RecognitionException {
@@ -635,8 +530,7 @@ public class BotParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(62);
-			((ExpressionContext)_localctx).t1 = term();
+			setState(62); ((ExpressionContext)_localctx).t1 = term();
 			((ExpressionContext)_localctx).value =  (int)((ExpressionContext)_localctx).t1.value;
 			setState(70);
 			_errHandler.sync(this);
@@ -644,10 +538,8 @@ public class BotParser extends Parser {
 			while (_la==MAS) {
 				{
 				{
-				setState(64);
-				match(MAS);
-				setState(65);
-				((ExpressionContext)_localctx).t2 = term();
+				setState(64); match(MAS);
+				setState(65); ((ExpressionContext)_localctx).t2 = term();
 				((ExpressionContext)_localctx).value =  (int)_localctx.value + (int)((ExpressionContext)_localctx).t2.value;
 				}
 				}
@@ -684,11 +576,6 @@ public class BotParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof BotListener ) ((BotListener)listener).exitTerm(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BotVisitor ) return ((BotVisitor<? extends T>)visitor).visitTerm(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final TermContext term() throws RecognitionException {
@@ -697,8 +584,7 @@ public class BotParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(73);
-			((TermContext)_localctx).NUMERO = match(NUMERO);
+			setState(73); ((TermContext)_localctx).NUMERO = match(NUMERO);
 			((TermContext)_localctx).value =  Integer.parseInt((((TermContext)_localctx).NUMERO!=null?((TermContext)_localctx).NUMERO.getText():null)); 
 			}
 		}

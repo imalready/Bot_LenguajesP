@@ -23,7 +23,7 @@ Map<String, Object> symbolTable = new HashMap<String, Object>();
 function: sentence*;
 		
 
-sentence: up | down | left | right | drop | pick;
+sentence returns [ASTNode node]: up | down | left | right | drop | pick | read | conditional;
 
 up: UP expression SEMICOLON
 	{
@@ -59,13 +59,38 @@ drop: DROP SEMICOLON
 		bot.drop();
 		System.out.println("Soltar");
 	};
+read returns [ASTNode node]: READ expression SEMICOLON
+	{node = new Read($expression.node)};
 	
-expression returns [int value]:
-		t1=term {$value = (int)$t1.value;}
-			(MAS t2=term {$value = (int)$value + (int)$t2.value;})*;
-
-term returns [int value]:
-		NUMERO{$value = Integer.parseInt($NUMERO.text); };
+conditional returns [ASTNode node]: IF PAR_OPEN expression PAR_CLOSE 
+			{
+				List<ASTNode> body = new ArrayList<ASTNode>();
+			}
+			BRACKET_OPEN (s1 = sentence {body.add($s1.node);})* BRACKET_CLOSE
+			ELSE
+			{
+				List<ASTNode> elseBody = new ArrayList<ASTNode>();
+			}
+			BRACKET_OPEN (s2 = sentence {elseBody.add($s2.node);})* BRACKET_CLOSE
+			{
+				$node = new if($expression.node,body,elseBody)
+			};
+	
+expression returns [ASTNode node]:
+		t1=factor {$node = $t1.node;}
+			(MAS t2=factor {$node = new Addition($node, $t2.node);}
+				| MENOS t2=factor {$node = Minus($node, $t2.node);}
+			)*;
+factor returns [int value]: 
+		t1=term {$value = (int)$t1.value;} 
+			(MULT t2=term {$value = (int)$value * (int)$t2.value;})*;
+			
+dividendo returns [int value]: 
+		t1=term {$value = (int)$t1.value;} 
+			(MULT t2=term {$value = (int)$value / (int)$t2.value;})*;
+term returns [ASTNode node]:
+		NUMERO{}
+		| BOOL {};
 
 // Los tokens se escriben a continuación de estos comentarios.
 
