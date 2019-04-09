@@ -20,47 +20,47 @@ Map<String, Object> symbolTable = new HashMap<String, Object>();
 }
 
  
-function: sentence*;
-		
+function: FUNCTION ID BRACKET_OPEN
+	{
+		List<ASTNode> body = new ArrayList<ASTNode>();
+	}
+	(sentence {body.add($sentence.node);})*
+	BRACKET_CLOSE
+	{
+		for(ASTNode n : body){
+			n.execute();
+		}
+	};
+			
 
-sentence returns [ASTNode node]: up | down | left | right | drop | pick | read | conditional;
+sentence returns [ASTNode node]: println {$node = $println.node} | conditional {$node = $conditional.node};
 
-up: UP expression SEMICOLON
-	{
-		//symbolTable.put("up",$expression.value);
-		bot.up($expression.value);
-		System.out.println("Subir");
-	};
-down: DOWN expression SEMICOLON
-	{
-		//symbolTable.put("down",$expression.value);
-		bot.down($expression.value);
-		System.out.println("Bajar");
-	};
-left: LEFT expression SEMICOLON
-	{
-		//symbolTable.put("left",$expression.value);
-		bot.left($expression.value);
-		System.out.println("Izquierda");
-	};
-right: RIGHT expression SEMICOLON
-	{
-		//symbolTable.put("right",$expression.value);
-		bot.right($expression.value);
-		System.out.println("Derecha");
-	};
-pick: PICK SEMICOLON
-	{
-		bot.pick();
-		System.out.println("Tomar");
-	};
-drop: DROP SEMICOLON
-	{
-		bot.drop();
-		System.out.println("Soltar");
-	};
-read returns [ASTNode node]: READ expression SEMICOLON
-	{node = new Read($expression.node)};
+up returns [ASTNode node]:
+	UP expression SEMICOLON
+	;
+	
+down returns [ASTNode node]:
+	DOWN expression SEMICOLON
+	;
+	
+left returns [ASTNode node]:
+	LEFT expression SEMICOLON
+	;
+	
+right returns [ASTNode node]:
+	RIGHT expression SEMICOLON
+	;
+	
+pick returns [ASTNode node]:
+	PICK expression SEMICOLON
+	;
+	
+drop returns [ASTNode node]:
+	DROP expression SEMICOLON
+	;
+	
+println returns [ASTNode node]: WRITELN expression SEMICOLON
+	{node = new Println($expression.node)};
 	
 conditional returns [ASTNode node]: IF PAR_OPEN expression PAR_CLOSE 
 			{
@@ -79,18 +79,18 @@ conditional returns [ASTNode node]: IF PAR_OPEN expression PAR_CLOSE
 expression returns [ASTNode node]:
 		t1=factor {$node = $t1.node;}
 			(MAS t2=factor {$node = new Addition($node, $t2.node);}
-				| MENOS t2=factor {$node = Minus($node, $t2.node);}
+				| MENOS t2=factor {$node = Minus($node, $t2.node);})*;
+				
+factor returns [ASTNode node]: 
+		t1=term {$node = $t1.node} 
+			(MULT t2=term {$node = new Multiplication($node, $t2.node);}
+				| DIV t2=term {$node = new Division($node, $t2.node);}
 			)*;
-factor returns [int value]: 
-		t1=term {$value = (int)$t1.value;} 
-			(MULT t2=term {$value = (int)$value * (int)$t2.value;})*;
 			
-dividendo returns [int value]: 
-		t1=term {$value = (int)$t1.value;} 
-			(MULT t2=term {$value = (int)$value / (int)$t2.value;})*;
 term returns [ASTNode node]:
-		NUMERO{}
-		| BOOL {};
+		NUMERO{$node = new Constant(Integer.parseInt($NUMERO.text));}
+		| BOOL {$node = new Constant(Boolean.parseBoolean($BOOL.text));}
+		| PAR_OPEN expression {$node = $expression.node;} PAR_CLOSE;
 
 // Los tokens se escriben a continuación de estos comentarios.
 
