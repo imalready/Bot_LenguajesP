@@ -1,4 +1,17 @@
-down 6+2; up 4; right 4+3; left 3;
-down 5; right 6; up 4; left 6;
-down 3; up 3; right 6+2; left 4+2;
-down 9; up 8; 
+function diagonal (let lenght)
+begin
+let counter = 0;
+lenght = 2;
+if (counter < length)
+begin
+println(counter);
+println(counter);
+println(counter);
+end
+else
+begin
+println(lenght);
+println(lenght);
+println(lenght);
+end;
+end;
